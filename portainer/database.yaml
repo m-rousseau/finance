@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+    postgres:
+        image: postgres
+        restart: unless-stopped
+        ports:
+        - 5432:5432
+        volumes:
+        - ./postgres:/var/lib/postgresql/data
+        - /etc/timezone:/etc/timezone:ro
+        - /etc/localtime:/etc/localtime:ro
+        environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=pg1
+        
+    pgadmin:
+        image: dpage/pgadmin4
+        restart: unless-stopped
+        ports:
+        - 5050:80
+        volumes:
+        - ./pgadmin/data:/var/lib/pgadmin
+        - ./pgadmin/servers.json:/pgadmin4/servers.json
+        - /etc/timezone:/etc/timezone:ro
+        - /etc/localtime:/etc/localtime:ro
+        environment:
+        - PGADMIN_DEFAULT_EMAIL=pgadmin@pgadmin.com
+        - PGADMIN_DEFAULT_PASSWORD=pgadmin
+        user: "${UID}:${GID}"
+        depends_on:
+        - postgres
