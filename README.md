@@ -2,6 +2,8 @@
 
 use a digital ocean droplet with docker
 
+POTENTIAL GOOD GUIDE [LINK](https://www.docker.com/blog/containerized-python-development-part-2/)
+
 ## Setup
 
 ### VS Code docker
@@ -62,6 +64,12 @@ Log into Postgres via PG Admin:
 - create passfile [guide](https://stackoverflow.com/questions/64620446/adding-postgress-connections-to-pgadmin-in-docker-file)
 
 #### Flask
+
+Follow this [guide](https://stackoverflow.com/questions/41381350/docker-compose-installing-requirements-txt) to set up docker compose file with ability to install requirements.
+
+or
+
+follow this [guide](https://www.clickittech.com/devops/dockerize-flask-python-application/) to use dockerfiles for each service, and a central docker compose file on portainer to control them all
 
 ## Tasks
 
