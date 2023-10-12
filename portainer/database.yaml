@@ -26,7 +26,7 @@ services:
         - /etc/localtime:/etc/localtime:ro
         environment:
         - PGADMIN_DEFAULT_EMAIL=pgadmin@pgadmin.com
-        - PGADMIN_DEFAULT_PASSWORD=pgadmin
+        - PGADMIN_DEFAULT_PASSWORD=)fyF@;e3qXW=O+m6V>BO
         user: "${UID}:${GID}"
         depends_on:
         - postgres
