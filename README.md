@@ -31,7 +31,7 @@ docker container run -d \
 portainer/portainer-ce:alpine
 ```
 
-Access the web gui at vps-host:9000
+Access the web gui at http://localhost:9000
 
 #### Airflow
 
