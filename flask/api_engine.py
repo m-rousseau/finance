@@ -1,10 +1,11 @@
 from configparser import ConfigParser
 from polygon import RESTClient
+from datetime import datetime
 import os
 
 # we use polygon.io -- https://polygon.io/
 
-def config(filename='creds.ini', section='apikeys'):
+def create_client(filename='creds.ini', section='apikeys'):
     # get relative path
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, filename)
@@ -26,13 +27,17 @@ def config(filename='creds.ini', section='apikeys'):
     return api_client
 
 
-api_client = config()
+# api_client = config()
 
-ticker = "AAPL"
+# ticker = "AAPL"
 
-# List Aggregates (Bars)
-aggs = []
-for a in api_client.list_aggs(ticker=ticker, multiplier=1, timespan="minute", from_="2023-01-01", to="2023-06-13", limit=50000):
-    aggs.append(a)
+# # OCHL data
 
-print(aggs)
+# aggs = []
+# tickers = ['AAPL', 'TSLA']
+# for ticker in tickers:
+#     for a in api_client.get_previous_close_agg(ticker=ticker):
+#         aggs.append(a)
+
+# print(aggs)
+
