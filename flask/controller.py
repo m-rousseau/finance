@@ -5,11 +5,23 @@ import pandas as pd
 
 
 # get json data from finnhub
-r = a.get_data('AAPL')
-df = pd.DataFrame(r.json(), index=[0])
+# r = a.get_data('AAPL')
+# df = pd.DataFrame(r.json(), index=[0])
 
-engine = cs.get_connection()
+# get stock data
+def get_stock_data(api_engine, symbols=[]):
+    api_engine.aggregate_indicator('AAPL', 'D')
 
+
+# outward facing api engine
+api_engine = a.create_client()
+# inward facing db engine
+db_engine = cs.get_connection()
+
+# get basic data for apple
+get_stock_data(api_engine, ['AAPL'])
+
+# database thread
 try:
     with engine.connect() as connection:
         result = connection.execute(

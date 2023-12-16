@@ -2,9 +2,8 @@ from sqlalchemy import create_engine, URL, text
 from configparser import ConfigParser
 import os
 
-# https://github.com/Finnhub-Stock-API/finnhub-python
 
-def config(filename='database.ini', section='postgresql'):
+def config(filename='creds.ini', section='postgresql'):
     # get relative path
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, filename)
