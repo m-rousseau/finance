@@ -83,7 +83,7 @@ flask:
 
 backend-API:
 
-- setupd API access
+- setup API access
 - successfully query online repo via API
 - store data to DB
 
