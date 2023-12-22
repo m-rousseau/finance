@@ -1,8 +1,10 @@
-from sqlalchemy import create_engine, URL, text
+from sqlalchemy import create_engine, URL, text, Table, Column, Integer, String, MetaData
 from configparser import ConfigParser
+import init_tables
 import os
 
 
+# configuration for postgres connection
 def config(filename='creds.ini', section='postgresql'):
     
     # get relative path
@@ -25,6 +27,7 @@ def config(filename='creds.ini', section='postgresql'):
     return db
 
 
+# connects to the postgres databse
 def get_connection():
 
     engine = None
@@ -47,29 +50,13 @@ def get_connection():
     )
 
 
-# executes SQL statements
-# def execute():
-#     with engine.connect() as connection:
-#         connection.execute("<some statement>")
-#         connection.commit()  # commits "some statement"
+# create all required data tables
+def initialize_tables():
 
-#         # new transaction starts
-#         connection.execute("<some other statement>")
-#         connection.rollback()  # rolls back "some other statement"
+    # connect to database
+    db_connection = get_connection()
+    # create metadata object. this contains all table objects
+    meta = init_tables.create_tables()
+    # create any table that is currently not in the database
+    meta.create_all(db_connection)
 
-#         # new transaction starts
-#         connection.execute("<a third statement>")
-#         connection.commit()  # commits "a third statement"
-
-
-# if __name__ == '__main__':
-#     try:
-#         # engine = get_connection()
-#         with engine.connect() as connection:
-#             result = connection.execute(
-#                 text("select ticker from stocks")
-#                 )
-#             for row in result:
-#                 print("ticker:", row.ticker)
-#     except Exception as ex:
-#         print("Sorry your connection is not created some interruption is occured please check and try it again \n", ex)
